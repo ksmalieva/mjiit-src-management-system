@@ -1,0 +1,473 @@
+/* --- Variables & Resets --- */
+:root {
+    --primary: #00436f;
+    --primary-hover: #005b94;
+    --surface: #f7f9fb;
+    --surface-container-lowest: #ffffff;
+    --surface-container-low: #f2f4f6;
+    --surface-container-high: #e6e8ea;
+    --surface-container-highest: #e0e3e5;
+    --on-surface: #191c1e;
+    --on-surface-variant: #414750;
+    --secondary: #006a6a;
+    --secondary-container: #90efef;
+    --on-secondary-container: #006e6e;
+    --outline: #717881;
+    --on-primary: #ffffff;
+    
+    --font-body: 'Inter', sans-serif;
+    --font-headline: 'Manrope', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--surface);
+    color: var(--on-surface);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Material Icons Setup */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+}
+.filled-icon {
+    font-variation-settings: 'FILL' 1;
+}
+
+/* --- Navigation --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(16px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 4rem;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.nav-logo {
+    height: 3rem;
+    width: auto;
+}
+
+
+
+.nav-links {
+    display: none;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--on-surface-variant);
+    font-weight: 500;
+    font-size: 1 rem;
+    color: black;
+    transition: color 0.3s;
+    
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+/* --- Main Content & Layout --- */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1rem 4rem;
+}
+
+.form-card {
+    width: 100%;
+    max-width: 36rem;
+    background-color: var(--surface-container-lowest);
+    border-radius: 0.75rem;
+    box-shadow: 0 24px 48px -12px rgba(25, 28, 30, 0.08);
+    overflow: hidden;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* --- Form Elements --- */
+.card-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.card-header h1 {
+    font-family: var(--font-headline);
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+}
+
+.card-header p {
+    color: var(--on-surface-variant);
+    font-size: 0.875rem;
+    max-width: 20rem;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--on-surface-variant);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"] {
+    width: 100%;
+    background-color: var(--surface-container-highest);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input::placeholder {
+    color: var(--outline);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-bottom-color: var(--primary);
+}
+
+/* --- Role Selection (Radio Buttons) --- */
+.role-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Updated to 2 columns for Admin/Staff */
+    gap: 0.75rem;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.role-option {
+    cursor: pointer;
+}
+
+.role-box {
+    background-color: var(--surface-container-low);
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+    transition: all 0.3s ease;
+}
+
+.role-option:hover .role-box {
+    background-color: var(--surface-container-high);
+}
+
+/* The magic that replaces Tailwind's peer-checked */
+.role-option input[type="radio"]:checked + .role-box {
+    background-color: var(--secondary-container);
+    color: var(--on-secondary-container);
+}
+
+.password-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* --- Buttons & Divider --- */
+.submit-section {
+    padding-top: 1rem;
+}
+
+.btn-primary {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+    color: var(--on-primary);
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 24px 48px -12px rgba(25, 28, 30, 0.08);
+    transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-primary .material-symbols-outlined {
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover .material-symbols-outlined {
+    transform: translateX(4px);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background-color: var(--surface-container-high);
+}
+
+.divider span {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--outline);
+}
+
+.login-prompt {
+    text-align: center;
+}
+
+.login-prompt p {
+    font-size: 0.875rem;
+    color: var(--on-surface-variant);
+}
+
+.login-prompt a {
+    color: var(--primary);
+    font-weight: 700;
+    margin-left: 0.25rem;
+    transition: text-decoration 0.3s;
+}
+
+.login-prompt a:hover {
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 91, 148, 0.5);
+}
+
+/* --- Inner Footer --- */
+.card-footer {
+    background-color: var(--surface-container-low);
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.security-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.security-badge .material-symbols-outlined {
+    color: var(--secondary);
+}
+
+.security-badge span {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+}
+
+.legal-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.legal-links a {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--outline);
+    transition: color 0.3s;
+}
+
+.legal-links a:hover {
+    color: var(--primary);
+}
+
+/* --- Global Footer --- */
+.global-footer {
+    width: 100%;
+    padding: 3rem 0;
+    background-color: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.footer-brand {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    color: #082f49;
+    font-size: 1.125rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: #64748b;
+    font-size: 0.875rem;
+    transition: all 0.3s;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    text-decoration-color: rgba(14, 165, 233, 0.3);
+}
+
+.copyright {
+    color: #64748b;
+    font-size: 0.875rem;
+}
+
+/* --- Responsive Media Queries --- */
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex;
+    }
+    
+    .card-body {
+        padding: 3rem;
+    }
+    
+    .password-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .card-footer {
+        flex-direction: row;
+    }
+}
+
+/* Add this to your existing style_registration.css */
+
+/* Fix for radio buttons visibility */
+.role-option {
+    cursor: pointer;
+    display: block;
+}
+
+.role-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.role-box {
+    background-color: var(--surface-container-low);
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.role-option input[type="radio"]:checked + .role-box {
+    background-color: var(--secondary-container);
+    color: var(--on-secondary-container);
+    border-color: var(--secondary);
+}
+
+.role-option:hover .role-box {
+    background-color: var(--surface-container-high);
+}
+
+/* Error message styling */
+.error-message {
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-left: 3px solid #dc2626;
+}
+
+.error-message .material-symbols-outlined {
+    font-size: 1.25rem;
+}
